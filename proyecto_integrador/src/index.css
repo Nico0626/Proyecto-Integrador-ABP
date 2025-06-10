@@ -5,13 +5,13 @@
 }
 
 .dark-mode {
-  background-color: #000000;
+  background-color: #242424;
   transition: all 0.3s ease;                
   color: aliceblue;
 }
 
 .app input {
-  background-color: white;
+  background-color: rgb(190, 189, 189);
   color: black;
   border: 1px solid #888;
   padding: 0.5rem;
@@ -28,7 +28,7 @@
 
 
 .app .card {
-  background-color: rgb(207, 203, 203);
+  background-color: rgb(153, 149, 149);
   color: black;
   border: 1px solid #888;
 }
