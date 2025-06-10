@@ -31,7 +31,27 @@ function App() {
   const productosMas20 = filteredProducts.filter((p) => p.title.length > 20).length;
   const precioTotal = products.reduce((acc, p) => acc + p.price, 0);
   const discountPercentage = (products.reduce((acc, p) => acc + p.discountPercentage, 0) / totalProducts).toFixed(2);
-
+//ver si se puse hacer componente
+  const handeleExport=()=>{
+    const blob=new Blob([JSON.stringify(filteredProducts,null,2)], {
+      type:"applicatio/json",
+    });
+    const url=URL.createObjectURL(blob);
+    triggerDowload(url, 'productos.json');
+  };
+  //pasarlo a componente
+  const triggerDowload=(url,filname)=>{
+    //crear el hipervinculo
+    const link=document.createElement('a');
+    link.href=url;
+    link.download =filname;
+    //agregamos el anchor tag en el DOM
+    document.body.appendChild(link);
+    //simulamos el click
+    link.click();
+    //eliminamos el elemento del anchor
+    ocument.body.removeChild(link);
+  }
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -60,6 +80,15 @@ function App() {
       </div>
 
       <ProductList products={filteredProducts} />
+
+      <select name="seleccion de formato de descarga" onChange={(e)=>setFormat(e.target.value)}value={format}>
+          <option value="">Seleccionar formato</option>
+          <option value="json">JASON</option>
+          <option value="excel">Excel</option>
+      </select>
+
+      <button onClick={handeleExport}>Exportar archivo</button>
+
       <div className="flex justify-center mt-6">Pagina {page}</div>
         <br />
       <div className="flex justify-center mt-6">
